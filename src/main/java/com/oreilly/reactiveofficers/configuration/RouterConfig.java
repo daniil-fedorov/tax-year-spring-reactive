@@ -18,6 +18,6 @@ public class RouterConfig {
             .route(GET("/tax-information-file").and(accept(APPLICATION_JSON)),
                 handler::getTaxYear)
             .andRoute(GET("/tax-information-files").and(accept(APPLICATION_JSON)),
-                handler::getAllTaxYear);
+                request -> handler.getAllTaxYear());
     }
 }
