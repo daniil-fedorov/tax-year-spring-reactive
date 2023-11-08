@@ -1,6 +1,6 @@
-package com.oreilly.reactiveofficers.repository;
+package com.taxyear.reactivespring.repository;
 
-import com.oreilly.reactiveofficers.entities.TaxInformation;
+import com.taxyear.reactivespring.entities.TaxInformation;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import reactor.core.publisher.Mono;
 

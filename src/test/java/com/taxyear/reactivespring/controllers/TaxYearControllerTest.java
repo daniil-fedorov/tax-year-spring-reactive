@@ -1,9 +1,8 @@
-package com.oreilly.reactiveofficers.controllers;
+package com.taxyear.reactivespring.controllers;
 
-import com.oreilly.reactiveofficers.entities.TaxInformation;
-import com.oreilly.reactiveofficers.repository.TaxYearRepository;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
+import com.taxyear.reactivespring.entities.TaxInformation;
+import com.taxyear.reactivespring.repository.TaxYearRepository;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,8 @@ import java.util.List;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class TaxYearHandlerAndRouterTests {
+class TaxYearControllerTest {
+
     @Autowired
     private WebTestClient client;
 
@@ -30,7 +30,7 @@ class TaxYearHandlerAndRouterTests {
         TaxInformation.builder().year(2023).standardPersonalAllowance(12570).build()
     );
 
-    @BeforeEach
+    @AfterEach
     public void setUp() {
         repository.deleteAll()
                   .thenMany(Flux.fromIterable(taxInformationList))
@@ -38,26 +38,25 @@ class TaxYearHandlerAndRouterTests {
                   .doOnNext(System.out::println)
                   .blockLast();
     }
+
     @Test
     void testGetAllTaxYearInformationFiles() {
         client.get().uri("/tax-information-files")
-              .accept(MediaType.APPLICATION_JSON)
+              .accept(MediaType.APPLICATION_JSON_UTF8)
               .exchange()
               .expectStatus().isOk()
               .expectHeader().contentType(MediaType.APPLICATION_JSON)
-              .expectBodyList(TaxInformation.class);
+              .expectBodyList(TaxInformation.class)
+              .hasSize(2)
+              .consumeWith(System.out::println);
     }
 
     @Test
-    void testGetTaxYearInformation() {
-
-
-        client.get()
-              .uri("/tax-information-file?year={path}", taxInformationList.get(0).getYear())
+    void testGetTaxYearInformationFile() {
+        client.get().uri("/tax-information-file?year={year}", taxInformationList.get(0).getYear())
               .exchange()
               .expectStatus().isOk()
-              .expectBody()
-              .consumeWith(response ->
-                                   Assertions.assertThat(response.getResponseBody()).isNotNull());
+              .expectBody(TaxInformation.class)
+              .consumeWith(System.out::println);
     }
 }

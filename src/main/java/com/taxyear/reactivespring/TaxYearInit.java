@@ -1,14 +1,12 @@
-package com.oreilly.reactiveofficers;
+package com.taxyear.reactivespring;
 
-import com.oreilly.reactiveofficers.entities.TaxInformation;
-import com.oreilly.reactiveofficers.repository.TaxYearRepository;
-import lombok.extern.slf4j.Slf4j;
+import com.taxyear.reactivespring.entities.TaxInformation;
+import com.taxyear.reactivespring.repository.TaxYearRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 
-@Slf4j
 @Component
 public class TaxYearInit implements ApplicationRunner {
     private final TaxYearRepository taxYearRepository;

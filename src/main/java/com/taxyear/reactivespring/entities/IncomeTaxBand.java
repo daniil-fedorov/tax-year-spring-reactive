@@ -1,4 +1,4 @@
-package com.oreilly.reactiveofficers.entities;
+package com.taxyear.reactivespring.entities;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;

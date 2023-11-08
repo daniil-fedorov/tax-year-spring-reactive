@@ -1,4 +1,4 @@
-package com.oreilly.reactiveofficers.entities;
+package com.taxyear.reactivespring.entities;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
@@ -7,8 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-
-import java.util.List;
 
 
 @JsonDeserialize(builder = TaxInformation.TaxInformationBuilder.class)

@@ -1,6 +1,6 @@
-package com.oreilly.reactiveofficers.configuration;
+package com.taxyear.reactivespring.configuration;
 
-import com.oreilly.reactiveofficers.controllers.TaxYearHandler;
+import com.taxyear.reactivespring.controllers.TaxYearHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.server.RouterFunction;

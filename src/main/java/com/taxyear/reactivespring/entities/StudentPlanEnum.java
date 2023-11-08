@@ -1,4 +1,4 @@
-package com.oreilly.reactiveofficers.entities;
+package com.taxyear.reactivespring.entities;
 
 public enum StudentPlanEnum {
     NONE,

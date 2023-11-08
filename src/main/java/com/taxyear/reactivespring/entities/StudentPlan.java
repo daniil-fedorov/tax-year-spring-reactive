@@ -1,4 +1,4 @@
-package com.oreilly.reactiveofficers.entities;
+package com.taxyear.reactivespring.entities;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
@@ -8,18 +8,19 @@ import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
-@JsonDeserialize(builder = Band.BandBuilder.class)
+import java.util.List;
+
+@JsonDeserialize(builder = StudentPlan.StudentPlanBuilder.class)
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @EqualsAndHashCode
 @Getter
-public final class Band {
+public final class StudentPlan {
 
-    private final int lowerBound;
-    private final int upperBound;
-    private final int percentage;
+    private final StudentPlanEnum planName;
+    private final List<Band> bands;
 
     @JsonPOJOBuilder(withPrefix = "")
-    public static final class BandBuilder { }
+    public static final class StudentPlanBuilder { }
 
 }
