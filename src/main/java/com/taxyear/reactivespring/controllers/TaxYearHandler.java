@@ -20,7 +20,6 @@ public class TaxYearHandler {
     }
 
     public Mono<ServerResponse> getTaxYear(ServerRequest request) {
-
         Optional<String> year = request.queryParam("year");
         return year.map(value -> ServerResponse.ok()
             .contentType(APPLICATION_JSON)

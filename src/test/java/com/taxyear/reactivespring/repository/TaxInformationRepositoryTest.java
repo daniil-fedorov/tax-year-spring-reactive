@@ -16,21 +16,20 @@ import java.util.List;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 class TaxInformationRepositoryTest {
-    @Autowired
-    private TaxYearRepository repository;
-
     private final List<TaxInformation> taxInformationList = Arrays.asList(
         TaxInformation.builder().year(2022).standardPersonalAllowance(12570).build(),
         TaxInformation.builder().year(2023).standardPersonalAllowance(12570).build()
     );
 
+    @Autowired
+    private TaxYearRepository repository;
 
     @BeforeEach
     public void setUp() {
         repository.deleteAll()
-                  .thenMany(Flux.fromIterable(taxInformationList))
-                  .flatMap(repository::save)
-                  .blockLast();
+            .thenMany(Flux.fromIterable(taxInformationList))
+            .flatMap(repository::save)
+            .blockLast();
     }
 
     @Test
@@ -38,38 +37,38 @@ class TaxInformationRepositoryTest {
 
         TaxInformation build = TaxInformation.builder().year(2012).standardPersonalAllowance(12570).build();
         StepVerifier.create(repository.save(build))
-                    .expectNextMatches(taxInformation -> taxInformation.getYear() == 2012)
-                    .verifyComplete();
+            .expectNextMatches(taxInformation -> taxInformation.getYear() == 2012)
+            .verifyComplete();
     }
 
     @Test
     void findAll() {
         StepVerifier.create(repository.findAll())
-                    .expectNextCount(2)
-                    .verifyComplete();
+            .expectNextCount(2)
+            .verifyComplete();
     }
 
     @Test
     void findByYear() {
         taxInformationList.stream()
-                .map(TaxInformation::getYear)
-                .forEach(year ->
-                                 StepVerifier.create(repository.findByYear(year))
-                                             .expectNextCount(1)
-                                             .verifyComplete());
+            .map(TaxInformation::getYear)
+            .forEach(year ->
+                StepVerifier.create(repository.findByYear(year))
+                    .expectNextCount(1)
+                    .verifyComplete());
     }
 
     @Test
     void findByIdNotExist() {
         StepVerifier.create(repository.findByYear(0))
-                    .verifyComplete();
+            .verifyComplete();
     }
 
     @Test
     void count() {
         StepVerifier.create(repository.count())
-                    .expectNext(2L)
-                    .verifyComplete();
+            .expectNext(2L)
+            .verifyComplete();
     }
 
 }

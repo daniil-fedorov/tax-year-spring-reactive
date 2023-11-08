@@ -19,45 +19,44 @@ import java.util.List;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class TaxYearHandlerAndRouterTests {
-    @Autowired
-    private WebTestClient client;
-
-    @Autowired
-    private TaxYearRepository repository;
-
     private final List<TaxInformation> taxInformationList = Arrays.asList(
         TaxInformation.builder().year(2022).standardPersonalAllowance(12570).build(),
         TaxInformation.builder().year(2023).standardPersonalAllowance(12570).build()
     );
+    @Autowired
+    private WebTestClient client;
+    @Autowired
+    private TaxYearRepository repository;
 
     @BeforeEach
     public void setUp() {
         repository.deleteAll()
-                  .thenMany(Flux.fromIterable(taxInformationList))
-                  .flatMap(repository::save)
-                  .doOnNext(System.out::println)
-                  .blockLast();
+            .thenMany(Flux.fromIterable(taxInformationList))
+            .flatMap(repository::save)
+            .doOnNext(System.out::println)
+            .blockLast();
     }
+
     @Test
     void testGetAllTaxYearInformationFiles() {
         client.get().uri("/tax-information-files")
-              .accept(MediaType.APPLICATION_JSON)
-              .exchange()
-              .expectStatus().isOk()
-              .expectHeader().contentType(MediaType.APPLICATION_JSON)
-              .expectBodyList(TaxInformation.class);
+            .accept(MediaType.APPLICATION_JSON_UTF8)
+            .exchange()
+            .expectStatus().isOk()
+            .expectHeader().contentType(MediaType.APPLICATION_JSON)
+            .expectBodyList(TaxInformation.class)
+            .hasSize(2)
+            .consumeWith(System.out::println);
     }
 
     @Test
     void testGetTaxYearInformation() {
-
-
         client.get()
-              .uri("/tax-information-file?year={path}", taxInformationList.get(0).getYear())
-              .exchange()
-              .expectStatus().isOk()
-              .expectBody()
-              .consumeWith(response ->
-                                   Assertions.assertThat(response.getResponseBody()).isNotNull());
+            .uri("/tax-information-file?year={path}", taxInformationList.get(0).getYear())
+            .exchange()
+            .expectStatus().isOk()
+            .expectBody()
+            .consumeWith(response ->
+                Assertions.assertThat(response.getResponseBody()).isNotNull());
     }
 }
