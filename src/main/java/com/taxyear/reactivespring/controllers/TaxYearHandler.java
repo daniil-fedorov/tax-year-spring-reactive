@@ -1,13 +1,11 @@
 package com.taxyear.reactivespring.controllers;
 
-import com.taxyear.reactivespring.repository.TaxYearRepository;
 import com.taxyear.reactivespring.entities.TaxInformation;
+import com.taxyear.reactivespring.repository.TaxYearRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
-
-import java.util.Optional;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
@@ -20,12 +18,15 @@ public class TaxYearHandler {
     }
 
     public Mono<ServerResponse> getTaxYear(ServerRequest request) {
-        Optional<String> year = request.queryParam("year");
-        return year.map(value -> ServerResponse.ok()
-            .contentType(APPLICATION_JSON)
-            .body(repository.findByYear(Integer.parseInt(value)), TaxInformation.class))
 
-            .orElseGet(() -> ServerResponse.badRequest().build());
+        String requestYear = request.queryParam("year").orElse("");
+
+        int year = Integer.parseInt(requestYear);
+
+        return repository.findByYear(year).flatMap(value -> ServerResponse.ok()
+                .contentType(APPLICATION_JSON)
+                .syncBody(value))
+            .switchIfEmpty(ServerResponse.badRequest().build());
     }
 
     public Mono<ServerResponse> getAllTaxYear() {
