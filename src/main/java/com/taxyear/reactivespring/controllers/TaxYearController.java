@@ -29,7 +29,7 @@ public class TaxYearController {
                     .contentType(APPLICATION_JSON)
                     .body(value))
 
-            .switchIfEmpty(Mono.just(ResponseEntity.badRequest().build()));
+            .switchIfEmpty(Mono.error(new IllegalArgumentException()));
     }
 
     @GetMapping("/tax-information-files")
