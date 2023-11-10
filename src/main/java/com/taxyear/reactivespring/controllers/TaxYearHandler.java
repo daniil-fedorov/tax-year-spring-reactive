@@ -7,6 +7,7 @@ import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
+import static com.taxyear.reactivespring.exception.ExceptionMessages.INVALID_TAX_YEAR_MESSAGE;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 @Component
@@ -18,15 +19,14 @@ public class TaxYearHandler {
     }
 
     public Mono<ServerResponse> getTaxYear(ServerRequest request) {
-
-        String requestYear = request.queryParam("year").orElse("");
+        String requestYear = request.queryParam("year").filter(x -> !x.isEmpty()).orElse("0");
 
         int year = Integer.parseInt(requestYear);
 
         return repository.findByYear(year).flatMap(value -> ServerResponse.ok()
                 .contentType(APPLICATION_JSON)
                 .syncBody(value))
-            .switchIfEmpty(ServerResponse.badRequest().build());
+            .switchIfEmpty(ServerResponse.badRequest().syncBody(INVALID_TAX_YEAR_MESSAGE));
     }
 
     public Mono<ServerResponse> getAllTaxYear() {
