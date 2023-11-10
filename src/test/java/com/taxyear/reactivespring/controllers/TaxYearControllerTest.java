@@ -46,8 +46,7 @@ class TaxYearControllerTest {
             .expectStatus().isOk()
             .expectHeader().contentType(MediaType.APPLICATION_JSON)
             .expectBodyList(TaxInformation.class)
-            .hasSize(2)
-            .consumeWith(System.out::println);
+            .hasSize(2);
     }
 
     @Test
