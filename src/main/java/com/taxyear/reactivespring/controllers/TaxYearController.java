@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Optional;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 @RestController
@@ -22,7 +24,10 @@ public class TaxYearController {
     }
 
     @GetMapping("/tax-information-file")
-    public Mono<ResponseEntity<TaxInformation>> getTaxYear(@RequestParam int year) {
+    public Mono<ResponseEntity<TaxInformation>> getTaxYear(@RequestParam(name = "year") Optional<String> requestYear) {
+        
+        int year = Integer.parseInt(requestYear.filter(x -> !x.isEmpty()).orElse("0"));
+
         return repository.findByYear(year)
             .map(value ->
                 ResponseEntity.ok()
