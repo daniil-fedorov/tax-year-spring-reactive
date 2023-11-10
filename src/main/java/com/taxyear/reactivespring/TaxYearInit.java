@@ -3,6 +3,7 @@ package com.taxyear.reactivespring;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.taxyear.reactivespring.entities.TaxInformation;
+import com.taxyear.reactivespring.exception.TaxRepositoryException;
 import com.taxyear.reactivespring.repository.TaxYearRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;
@@ -41,7 +42,7 @@ public class TaxYearInit implements ApplicationRunner {
                 .thenMany(taxYearRepository.findAll())
                 .subscribe(x -> log.info(x.toString()));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new TaxRepositoryException(e);
         }
     }
 }

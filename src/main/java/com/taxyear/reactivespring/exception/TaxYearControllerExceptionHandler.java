@@ -12,7 +12,7 @@ import static com.taxyear.reactivespring.exception.ExceptionMessages.INVALID_TAX
 @ControllerAdvice
 public class TaxYearControllerExceptionHandler {
 
-    @ExceptionHandler(value = IllegalArgumentException.class)
+    @ExceptionHandler(value = TaxRepositoryException.class)
     protected Mono<ResponseEntity<String>> handleIllegalArgumentException() {
 
         return Mono.just(ResponseEntity.badRequest().body(INVALID_TAX_YEAR_MESSAGE));

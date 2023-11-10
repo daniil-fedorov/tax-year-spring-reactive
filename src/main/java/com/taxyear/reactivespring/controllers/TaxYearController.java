@@ -1,6 +1,7 @@
 package com.taxyear.reactivespring.controllers;
 
 import com.taxyear.reactivespring.entities.TaxInformation;
+import com.taxyear.reactivespring.exception.TaxRepositoryException;
 import com.taxyear.reactivespring.repository.TaxYearRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,7 @@ public class TaxYearController {
 
     @GetMapping("/tax-information-file")
     public Mono<ResponseEntity<TaxInformation>> getTaxYear(@RequestParam(name = "year") Optional<String> requestYear) {
-        
+
         int year = Integer.parseInt(requestYear.filter(x -> !x.isEmpty()).orElse("0"));
 
         return repository.findByYear(year)
@@ -34,7 +35,7 @@ public class TaxYearController {
                     .contentType(APPLICATION_JSON)
                     .body(value))
 
-            .switchIfEmpty(Mono.error(new IllegalArgumentException()));
+            .switchIfEmpty(Mono.error(new TaxRepositoryException()));
     }
 
     @GetMapping("/tax-information-files")
