@@ -1,0 +1,462 @@
+{
+  "2022": {
+    "year": "2022",
+    "standardPersonalAllowance": 12570,
+    "nationalInsurance": [
+      {
+        "lowerBound": 0,
+        "upperBound": 12570,
+        "percentage": 0
+      },
+      {
+        "lowerBound": 12570,
+        "upperBound": 50270,
+        "percentage": 0.12
+      },
+      {
+        "lowerBound": 50270,
+        "upperBound": 2e9,
+        "percentage": 0.02
+      }
+    ],
+    "studentLoanPlans": [
+      {
+        "planName": "PLAN_1",
+        "bands": [
+          {
+            "lowerBound": 0,
+            "upperBound": 22015,
+            "percentage": 0
+          },
+          {
+            "lowerBound": 22015,
+            "upperBound": 2e9,
+            "percentage": 0.09
+          }
+        ]
+      },
+      {
+        "planName": "PLAN_2",
+        "bands": [
+          {
+            "lowerBound": 0,
+            "upperBound": 27295,
+            "percentage": 0
+          },
+          {
+            "lowerBound": 27295,
+            "upperBound": 2e9,
+            "percentage": 0.09
+          }
+        ]
+      },
+      {
+        "planName": "PLAN_4",
+        "bands": [
+          {
+            "lowerBound": 0,
+            "upperBound": 27660,
+            "percentage": 0
+          },
+          {
+            "lowerBound": 27660,
+            "upperBound": 1e3,
+            "percentage": 0.09
+          }
+        ]
+      },
+      {
+        "planName": "PLAN_5",
+        "bands": [
+          {
+            "lowerBound": 0,
+            "upperBound": 25000,
+            "percentage": 0
+          },
+          {
+            "lowerBound": 25000,
+            "upperBound": 2e3,
+            "percentage": 0.09
+          }
+        ]
+      },
+      {
+        "planName": "PG_PLAN",
+        "bands": [
+          {
+            "lowerBound": 0,
+            "upperBound": 27295,
+            "percentage": 0
+          },
+          {
+            "lowerBound": 27295,
+            "upperBound": 2e9,
+            "percentage": 0.09
+          }
+        ]
+      },
+      {
+        "planName": "NONE",
+        "bands": [
+          {
+            "lowerBound": 0,
+            "upperBound": 0,
+            "percentage": 0
+          }
+        ]
+      }
+    ],
+    "personalAllowanceReductionLevel": 100000,
+    "personalAllowanceReductionRate": 0.5,
+    "basicRate": 0.2,
+    "scottishBasicRate": 0.19,
+    "englandDefaultTaxCode": "1257L",
+    "scotlandDefaultTaxCode": "S1257L",
+    "walesDefaultTaxCode": "C1257L",
+    "northernIrelandDefaultTaxCode": "1257L",
+    "bikTaxRate": 0.02,
+    "pensionPersonalAllowance": 60000,
+    "incomeTaxBands": [
+      {
+        "country": "ENGLAND",
+        "bands": [
+          {
+            "lowerBound": 0,
+            "upperBound": 12570,
+            "percentage": 0
+          },
+          {
+            "lowerBound": 12571,
+            "upperBound": 50270,
+            "percentage": 0.2
+          },
+          {
+            "lowerBound": 50271,
+            "upperBound": 150000,
+            "percentage": 0.4
+          },
+          {
+            "lowerBound": 150000,
+            "upperBound": 2e9,
+            "percentage": 0.45
+          }
+        ]
+      },
+      {
+        "country": "SCOTLAND",
+        "bands": [
+          {
+            "lowerBound": 0,
+            "upperBound": 12570,
+            "percentage": 0
+          },
+          {
+            "lowerBound": 12571,
+            "upperBound": 14732,
+            "percentage": 0.19
+          },
+          {
+            "lowerBound": 14733,
+            "upperBound": 25688,
+            "percentage": 0.2
+          },
+          {
+            "lowerBound": 25689,
+            "upperBound": 43662,
+            "percentage": 0.21
+          },
+          {
+            "lowerBound": 43663,
+            "upperBound": 150000,
+            "percentage": 0.41
+          },
+          {
+            "lowerBound": 150000,
+            "upperBound": 2e9,
+            "percentage": 0.46
+          }
+        ]
+      },
+      {
+        "country": "NORTHERN_IRELAND",
+        "bands": [
+          {
+            "lowerBound": 0,
+            "upperBound": 12570,
+            "percentage": 0
+          },
+          {
+            "lowerBound": 12571,
+            "upperBound": 50270,
+            "percentage": 0.2
+          },
+          {
+            "lowerBound": 50271,
+            "upperBound": 150000,
+            "percentage": 0.4
+          },
+          {
+            "lowerBound": 150000,
+            "upperBound": 2e9,
+            "percentage": 0.45
+          }
+        ]
+      },
+      {
+        "country": "WALES",
+        "bands": [
+          {
+            "lowerBound": 0,
+            "upperBound": 12570,
+            "percentage": 0
+          },
+          {
+            "lowerBound": 12571,
+            "upperBound": 50270,
+            "percentage": 0.2
+          },
+          {
+            "lowerBound": 50271,
+            "upperBound": 150000,
+            "percentage": 0.4
+          },
+          {
+            "lowerBound": 150000,
+            "upperBound": 2e9,
+            "percentage": 0.45
+          }
+        ]
+      }
+    ]
+  },
+  "2023": {
+    "year": "2023",
+    "standardPersonalAllowance": 12570,
+    "nationalInsurance": [
+      {
+        "lowerBound": 0,
+        "upperBound": 12570,
+        "percentage": 0
+      },
+      {
+        "lowerBound": 12570,
+        "upperBound": 50270,
+        "percentage": 0.12
+      },
+      {
+        "lowerBound": 50270,
+        "upperBound": 2e9,
+        "percentage": 0.02
+      }
+    ],
+    "studentLoanPlans": [
+      {
+        "planName": "PLAN_1",
+        "bands": [
+          {
+            "lowerBound": 0,
+            "upperBound": 22015,
+            "percentage": 0
+          },
+          {
+            "lowerBound": 22015,
+            "upperBound": 2e9,
+            "percentage": 0.09
+          }
+        ]
+      },
+      {
+        "planName": "PLAN_2",
+        "bands": [
+          {
+            "lowerBound": 0,
+            "upperBound": 27295,
+            "percentage": 0
+          },
+          {
+            "lowerBound": 27295,
+            "upperBound": 2e9,
+            "percentage": 0.09
+          }
+        ]
+      },
+      {
+        "planName": "PLAN_4",
+        "bands": [
+          {
+            "lowerBound": 0,
+            "upperBound": 27660,
+            "percentage": 0
+          },
+          {
+            "lowerBound": 27660,
+            "upperBound": 1e3,
+            "percentage": 0.09
+          }
+        ]
+      },
+      {
+        "planName": "PLAN_5",
+        "bands": [
+          {
+            "lowerBound": 0,
+            "upperBound": 25000,
+            "percentage": 0
+          },
+          {
+            "lowerBound": 25000,
+            "upperBound": 2e3,
+            "percentage": 0.09
+          }
+        ]
+      },
+      {
+        "planName": "PG_PLAN",
+        "bands": [
+          {
+            "lowerBound": 0,
+            "upperBound": 27295,
+            "percentage": 0
+          },
+          {
+            "lowerBound": 27295,
+            "upperBound": 2e9,
+            "percentage": 0.09
+          }
+        ]
+      },
+      {
+        "planName": "NONE",
+        "bands": [
+          {
+            "lowerBound": 0,
+            "upperBound": 0,
+            "percentage": 0
+          }
+        ]
+      }
+    ],
+    "personalAllowanceReductionLevel": 100000,
+    "personalAllowanceReductionRate": 0.5,
+    "basicRate": 0.2,
+    "scottishBasicRate": 0.19,
+    "englandDefaultTaxCode": "1257L",
+    "scotlandDefaultTaxCode": "S1257L",
+    "walesDefaultTaxCode": "C1257L",
+    "northernIrelandDefaultTaxCode": "1257L",
+    "bikTaxRate": 0.02,
+    "pensionPersonalAllowance": 60000,
+    "incomeTaxBands": [
+      {
+        "country": "ENGLAND",
+        "bands": [
+          {
+            "lowerBound": 0,
+            "upperBound": 12570,
+            "percentage": 0
+          },
+          {
+            "lowerBound": 12571,
+            "upperBound": 50270,
+            "percentage": 0.2
+          },
+          {
+            "lowerBound": 50271,
+            "upperBound": 125140,
+            "percentage": 0.4
+          },
+          {
+            "lowerBound": 125140,
+            "upperBound": 2e9,
+            "percentage": 0.45
+          }
+        ]
+      },
+      {
+        "country": "SCOTLAND",
+        "bands": [
+          {
+            "lowerBound": 0,
+            "upperBound": 12570,
+            "percentage": 0
+          },
+          {
+            "lowerBound": 12571,
+            "upperBound": 14732,
+            "percentage": 0.19
+          },
+          {
+            "lowerBound": 14733,
+            "upperBound": 25688,
+            "percentage": 0.2
+          },
+          {
+            "lowerBound": 25689,
+            "upperBound": 43662,
+            "percentage": 0.21
+          },
+          {
+            "lowerBound": 43663,
+            "upperBound": 125140,
+            "percentage": 0.42
+          },
+          {
+            "lowerBound": 125140,
+            "upperBound": 2e9,
+            "percentage": 0.47
+          }
+        ]
+      },
+      {
+        "country": "NORTHERN_IRELAND",
+        "bands": [
+          {
+            "lowerBound": 0,
+            "upperBound": 12570,
+            "percentage": 0
+          },
+          {
+            "lowerBound": 12571,
+            "upperBound": 50270,
+            "percentage": 0.2
+          },
+          {
+            "lowerBound": 50271,
+            "upperBound": 125140,
+            "percentage": 0.4
+          },
+          {
+            "lowerBound": 125140,
+            "upperBound": 2e9,
+            "percentage": 0.45
+          }
+        ]
+      },
+      {
+        "country": "WALES",
+        "bands": [
+          {
+            "lowerBound": 0,
+            "upperBound": 12570,
+            "percentage": 0
+          },
+          {
+            "lowerBound": 12571,
+            "upperBound": 50270,
+            "percentage": 0.2
+          },
+          {
+            "lowerBound": 50271,
+            "upperBound": 125140,
+            "percentage": 0.4
+          },
+          {
+            "lowerBound": 125140,
+            "upperBound": 2e9,
+            "percentage": 0.45
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,5 +1,7 @@
 package com.taxyear.reactivespring;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.taxyear.reactivespring.entities.TaxInformation;
 import com.taxyear.reactivespring.repository.TaxYearRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -8,19 +10,19 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 
-import java.util.Arrays;
-import java.util.List;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static java.util.Objects.requireNonNull;
 
 @Slf4j
 @Component
 public class TaxYearInit implements ApplicationRunner {
+    private static final ObjectMapper objectMapper = new ObjectMapper();
     private final TaxYearRepository taxYearRepository;
-
-    // create Json -> ObjectMapper -> pass to Flux.fromIterable()
-    private final List<TaxInformation> taxInformationList = Arrays.asList(
-        TaxInformation.builder().year(2022).standardPersonalAllowance(2202).build(),
-        TaxInformation.builder().year(2023).standardPersonalAllowance(3202).build()
-    );
 
     public TaxYearInit(TaxYearRepository taxYearRepository) {
         this.taxYearRepository = taxYearRepository;
@@ -28,10 +30,18 @@ public class TaxYearInit implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-        taxYearRepository.deleteAll()
-            .thenMany(Flux.fromIterable(taxInformationList))
-            .flatMap(taxYearRepository::save)
-            .thenMany(taxYearRepository.findAll())
-            .subscribe(x -> log.info(x.toString()));
+        try (InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream("taxYearData.json")) {
+
+            String mockDBString = new String(requireNonNull(resourceAsStream).readAllBytes(), UTF_8);
+            HashMap<String, TaxInformation> taxYearInformationMap = objectMapper.readValue(mockDBString, new TypeReference<Map<String, TaxInformation>>() { });
+
+            taxYearRepository.deleteAll()
+                .thenMany(Flux.fromIterable(taxYearInformationMap.values()))
+                .flatMap(taxYearRepository::save)
+                .thenMany(taxYearRepository.findAll())
+                .subscribe(x -> log.info(x.toString()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
